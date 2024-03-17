@@ -8,6 +8,8 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 ## How to Use
 
+*test
+
 ## Required Components
 
 ## Schematic
