@@ -6,7 +6,7 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 1) There's an on/off switch on the rear that controls all power to the Arduino and auxilliary components.
 
-2) Numbers are input by using the rotary dial, can only enter 4 and then the display will stop updating.
+2) Numbers are input by using the rotary dial, can only enter 4 digits and then the display will stop updating.
 
 3) If a mistake is made, picking up and then hanging up the headset will always reset the display inputs.
 
