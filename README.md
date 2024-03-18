@@ -21,6 +21,9 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 ## Required Components
 
 Here's a general list of the main components required:
+| Component # | Qty | Description |
+| ----------- | --- | ------------|
+| U1 | 1 | blahh |
 
 ## Schematic
 -----------------------
