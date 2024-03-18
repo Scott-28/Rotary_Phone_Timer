@@ -16,11 +16,11 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 5) To shut the ringer off, pick up and then hang up the headset.
 
-6) If you want to add time to the timer on the fly, you can dial in a number either while the countdown is in progress or when the ringer is going off. Time will always inpuot as minutes when you do this.
+6) If you want to add time to the timer on the fly, you can dial in a number either while the countdown is in progress or when the ringer is going off. Time will always input as minutes when you do this.
 
 ## Required Components
 
-Here's a general list of the main componenets required:
+Here's a general list of the main components required:
 
 ## Schematic
 -----------------------
