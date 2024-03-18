@@ -4,15 +4,15 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 ## How to Use
 
-There's an on/off switch on the rear that controls all power to the Arduino and auxilliary components.
+1) There's an on/off switch on the rear that controls all power to the Arduino and auxilliary components.
 
-Numbers are input by using the rotary dial, can only enter 4 and then the display will stop updating.
+2) Numbers are input by using the rotary dial, can only enter 4 and then the display will stop updating.
 
-If a mistake is made, picking up and then hanging up the headset will always reset the display inputs.
+3) If a mistake is made, picking up and then hanging up the headset will always reset the display inputs.
 
-When the desired time as been entered, single or double press the start button to start the timer countdown.
-* **Single Press:** Min/Sec timer countdown (left 2 digits are in min, right 2 digits are in sec)
-* **Double Press:** Hr/Min timer countdown (left 2 digits are in hrs, right 2 digits are in min)
+5) When the desired time as been entered, single or double press the start button to start the timer countdown.
+    * **Single Press:** Min/Sec timer countdown (left 2 digits are in min, right 2 digits are in sec)
+    * **Double Press:** Hr/Min timer countdown (left 2 digits are in hrs, right 2 digits are in min)
 
 ## Required Components
 
