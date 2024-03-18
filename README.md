@@ -15,8 +15,8 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 ## Schematic
 -----------------------
 
-![Schematic](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/Schematic_Rotary-Phone-Timer_2024-03-16.png)
-[PDF Version](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/Schematic_Rotary-Phone-Timer_2024-03-14.pdf)
+![Schematic](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/documentation/Schematic_Rotary-Phone-Timer_2024-03-16.png)
+[PDF Version](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/documentation/Schematic_Rotary-Phone-Timer_2024-03-14.pdf)
 
 ## Libraries
 
