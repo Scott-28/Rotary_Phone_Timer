@@ -18,7 +18,7 @@ const byte DIO = 5;                      // digital pin for the display DIO pin
 
 const byte brightness = 4;               // brightness variable for display (0 is dimmest, 7 is brightest)
 
-volatile byte inum = 1;                  // variable to count how many number have been input
+volatile byte inum = 1;                  // variable to count how many numbers have been input
 volatile byte input_1 = 0;
 volatile byte input_2 = 0;
 volatile byte input_3 = 0;
