@@ -20,7 +20,8 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 ## Libraries
 
-* TM1637.h - library for controlling a TM1637 based 7-segment display, created by 'avishorp' and found here (https://github.com/avishorp/TM1637)
+* TM1637Display.h -  library for controlling a TM1637 based 7-segment display, created by 'avishorp' and found here (https://github.com/avishorp/TM1637)
+* Arduino.h - built in Arduino library
 
 ## Contributing
 
