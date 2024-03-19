@@ -21,17 +21,24 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 ## Required Components
 
 Here's a general list of the main components required:
-| Component # | Qty | Description |
-| ----------- | --- | ------------|
-| U1 | 1 | Arduino Uno |
-| U2 | 1 | TM1637 4-Digit 7 Segment Display |
-| U3 | 1 | LM2596 DC-DC Step Down Converter (7.5VDC to 5VDC) |
-| U4 | 1 | Power Supply (120VAC to 7.5VDC) |
-| U5 | 1 | 5V Relay Module w/ Optocoupler |
-| U6 | 1 | Sine Wave Generator (5VDC to 70VAC @ 20Hz) |
+| Item # | Schematic # | Qty | Description |
+| ----------- | ----------- | --- | ------------|
+| 1 | U1 | 1 | Arduino Uno |
+| 2 | U2 | 1 | TM1637 4-Digit 7 Segment Display |
+| 3 | U3 | 1 | LM2596 DC-DC Step Down Converter (7.5VDC to 5VDC) |
+| 4 | U4 | 1 | Power Supply (120VAC to 7.5VDC) |
+| 5 | U5 | 1 | 5V Relay Module w/ Optocoupler |
+| 6 | U6 | 1 | Sine Wave Generator (5VDC to 70VAC @ 20Hz) |
+| 7 | U7 | 1 | Rotary Dial |
+| 8 | U8 | 1 | Phone Ringer |
+| 9 | D1 & D2 | 2 | LED status lights for hr/min & min/sec |
+| 10 | R1 & R2 | 2 | 270 Ohm resistor for LEDs |
+| 11 | SW1 | 1 | Main Power On/Off |
+| 12 | SW2 | 1 | Momentary start button |
+| 13 | SW3 | 1 | Phone Handset |
+| 14 | C1 | 1 | 0.1uF capacitor for filtering of the handset signal |
 
 ## Schematic
------------------------
 
 ![Schematic](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/docs/Schematic_Rotary-Phone-Timer_2024-03-16.png)
 [PDF Version](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/docs/Schematic_Rotary-Phone-Timer_2024-03-14.pdf)
