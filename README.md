@@ -23,7 +23,12 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 Here's a general list of the main components required:
 | Component # | Qty | Description |
 | ----------- | --- | ------------|
-| U1 | 1 | blahh |
+| U1 | 1 | Arduino Uno |
+| U2 | 1 | TM1637 4-Digit 7 Segment Display |
+| U3 | 1 | LM2596 DC-DC Step Down Converter (7.5VDC to 5VDC) |
+| U4 | 1 | Power Supply (120VAC to 7.5VDC) |
+| U5 | 1 | 5V Relay Module w/ Optocoupler |
+| U6 | 1 | Sine Wave Generator (5VDC to 70VAC @ 20Hz) |
 
 ## Schematic
 -----------------------
