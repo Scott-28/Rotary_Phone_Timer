@@ -2,6 +2,8 @@
 
 Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary dial phone into a kitchen (or general purpose) timer.  
 
+<img src="https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/images/overview_pic.JPG" width="500" />
+
 * Author: Scott-28
 * URL: https://github.com/Scott-28
 
