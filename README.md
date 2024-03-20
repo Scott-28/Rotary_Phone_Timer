@@ -2,6 +2,9 @@
 
 Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary dial phone into a kitchen (or general purpose) timer.  
 
+* Author: Scott-28
+* URL: https://github.com/Scott-28
+
 ## How to Use
 
 1) There's an on/off switch on the rear that controls all power to the Arduino and auxilliary components.
@@ -17,6 +20,16 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 5) To shut the ringer off, pick up and then hang up the headset.
 
 6) If you want to add time to the timer on the fly, you can dial in a number either while the countdown is in progress or when the ringer is going off. Time will always input as minutes when you do this.
+
+### Notes 
+* The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
+   * To combat this, a filtering capacitor was added to the handset switch which solves the noise causing the handset interrupt to falsely trigger.
+   * If the noise causes the display to go blank, it is reset almost immediately since the display is constantly updated, so it's almost unperceivable.
+   * If I were to redo this project, I would opt for shielded wiring for all the Arduino IO.
+     
+*  You'll notice the schematic has 2 grounds labeled (GND1 & GND2); the filtering capacitor MUST be grounded to GND1 (7.5VDC arduino power side) or else the partial isolation through the DC-DC converter will effect how well the capacitor does it's job at blocking noise.
+
+*  The original network box inside the phone was completey removed, it's not needed anymore since the arduino now acts as the brains.  
 
 ## Required Components
 
@@ -42,8 +55,6 @@ Here's a general list of the main components required:
 
 ![Schematic](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/docs/Schematic_Rotary-Phone-Timer_2024-03-16.png)
 [PDF Version](https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/docs/Schematic_Rotary-Phone-Timer_2024-03-14.pdf)
-
-## Software Settings
 
 ## Libraries
 
