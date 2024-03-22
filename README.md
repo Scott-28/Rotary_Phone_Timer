@@ -18,10 +18,12 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 4) When the desired time has been entered, single or double press the start button to start the timer countdown.
     * **Single Press:** Min/Sec timer countdown (left 2 digits are in min, right 2 digits are in sec)
     * **Double Press:** Hr/Min timer countdown (left 2 digits are in hrs, right 2 digits are in min)
+      
+5) The hr/min or min/sec status light will light up to tell you how much time is left.
 
-5) To shut the ringer off, pick up and then hang up the headset.
+6) To shut the ringer off, pick up and then hang up the headset.
 
-6) If you want to add time to the timer on the fly, you can dial in a number either while the countdown is in progress or when the ringer is going off. Time will always input as minutes when you do this.
+7) If you want to add time to the timer on the fly, you can dial in a number either while the countdown is in progress or when the ringer is going off. Time will always input as minutes when you do this.
 
 ### Notes 
 * The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
