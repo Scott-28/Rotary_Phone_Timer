@@ -55,7 +55,7 @@ void setup() {
   pinMode(13, OUTPUT);                                 // used as a visual to see if reset was triggered
 
   // Set baud rate for serial monitor, can de-activate later
-  //Serial.begin(9600);
+  Serial.begin(9600);
 
   // Clear the display on program start-up
   display.setBrightness(brightness, false);
@@ -105,6 +105,7 @@ void loop() {
       } 
 
       COUNTDOWN_TIME = UpdateDisplay(pulse_count, input_1, input_2, input_3, input_4);
+      Serial.println(COUNTDOWN_TIME);
       pulse_count = 0; // Reset pulse count after displaying it so pulses count correctly next time rotary dial is used
       inum++; // index the inum count so input digit is in correct spot
     }
