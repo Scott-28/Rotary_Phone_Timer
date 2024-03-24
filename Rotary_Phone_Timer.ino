@@ -33,7 +33,7 @@ volatile byte pulse_state = LOW;         // variable for rotary dial pulse state
 volatile byte prev_pulse_state = LOW;    // variable for previous rotary dial pulse state
 volatile bool firsttime = true;          // variable to know if rotary dial input is in the first pulse or not
 
-unsigned long COUNTDOWN_TIME = 0;        // variable for time (in sec) that is inputted
+unsigned int COUNTDOWN_TIME = 0;        // variable for time (in sec) that is inputted
 
 volatile unsigned long pulsetime_last = millis();      //
 volatile unsigned long mainloop_time = millis();       //
@@ -106,6 +106,7 @@ void loop() {
 
       COUNTDOWN_TIME = UpdateDisplay(pulse_count, input_1, input_2, input_3, input_4);
       Serial.println(COUNTDOWN_TIME);
+      Serial.println(inum);
       pulse_count = 0; // Reset pulse count after displaying it so pulses count correctly next time rotary dial is used
       inum++; // index the inum count so input digit is in correct spot
     }
@@ -163,7 +164,7 @@ int UpdateDisplay(int number, byte digit_1, byte digit_2, byte digit_3, byte dig
     total_time_mod = (minutes * 100) + seconds;
     display.showNumberDecEx(total_time_mod, 0b01000000, false);
   }
-  return total_time_mod;
+  return total_time_sec;
 }
 
 void SingleorDouble() {
@@ -207,6 +208,14 @@ void StartTimer() {
   } else {
     digitalWrite(do_min_sec, HIGH); // turn min/sec light on
   }
+
+  // figure out time entered in seconds
+  if (btn_press_type >= 2) {
+    //remaining_time = 
+  }
+
+  ////////////////////////////////////
+
 
   while (btn_press_type != 0) {
     unsigned long current_time = millis();
