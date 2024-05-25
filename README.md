@@ -30,7 +30,7 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
         * Example 1: If you want a timer of 5min, you can simply enter a single 5 and then double press which means the timer sees 00:05 and in hr/min format a double press means 5min. The timer will switch to 05:00 and start counting down the seconds.
         * Example 2: If a time of 45 is desired, you can simply enter a 4 and a 5 (00:45) and double press and in hr/min format a double press means 45min. The timer will switch to 45:00 and tart counting down the seconds.
 
-### Notes 
+### Build Notes 
 * The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
    * To combat this, a filtering capacitor was added to the handset switch which solves the noise causing the handset interrupt to falsely trigger.
    * If the noise causes the display to go blank, it is reset almost immediately since the display is constantly updated, so it's almost unperceivable.
