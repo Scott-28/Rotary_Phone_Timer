@@ -11,19 +11,24 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 1) There's an on/off switch on the rear that controls all power to the Arduino and auxilliary components.
 
-2) Numbers are input by using the rotary dial, can only enter 4 digits and then the display will stop updating.
+2) Numbers are input by using the rotary dial, you can only enter a max of 4 digits and then the display will stop updating.
 
-3) If a mistake is made, picking up and then hanging up the headset will always reset the display inputs.
-
-4) When the desired time has been entered, single or double press the start button to start the timer countdown.
+3) When the desired time has been entered, single or double press the start button to start the timer countdown.
     * **Single Press:** Min/Sec timer countdown (left 2 digits are in min, right 2 digits are in sec)
     * **Double Press:** Hr/Min timer countdown (left 2 digits are in hrs, right 2 digits are in min)
       
-5) The hr/min or min/sec status light will light up to tell you how much time is left.
+4) The timer will start counting down and the hr/min or min/sec status light will light up to tell you which mode the timer is in so you know how much time is left.
 
-6) To shut the ringer off, pick up and then hang up the headset.
+5) To shut the ringer off, pick up and then hang up the headset.
 
-7) If you want to add time to the timer on the fly, you can dial in a number either while the countdown is in progress or when the ringer is going off. Time will always input as minutes when you do this.
+6) You can also add additional time on the fly! Dial in a number either while the countdown is in progress or when the ringer is going off. Time will always input as minutes when you do this (a 5 will add 5min).
+
+    #### Use Notes
+    
+    * If a mistake is made while entering time, picking up and then hanging up the headset will always reset the display.
+    * For a quicker input, time that's in the "min/sec" format can be entered in "hr/min" format and then a double press can be used, as long as an even number minute is desired.
+        * Example 1: If you want a timer of 5min, you can simply enter a single 5 and then double press which means the timer sees 00:05 and in hr/min format a double press means 5min. The timer will switch to 05:00 and start counting down the seconds.
+        * Example 2: If a time of 45 is desired, you can simply enter a 4 and a 5 (00:45) and double press and in hr/min format a double press means 45min. The timer will switch to 45:00 and tart counting down the seconds.
 
 ### Notes 
 * The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
