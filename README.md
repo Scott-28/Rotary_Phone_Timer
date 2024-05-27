@@ -4,7 +4,7 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 <img src="https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/images/overview_pic.JPG" width="500" />
 
-The project by searching for a vintage rotary phone at thrift stores. I originally had in mind a classic 50-70s style or french style phone, but then came across this very old wooden box phone 
+The project started by searching for a vintage rotary phone at thrift stores. I originally had in mind a classic 50-70s style or french style phone, but then came across this very old wooden box phone 
 that was originally a hand crank phone. At some point, someone converted it to a rotary phone, and now it gets to serve another life as a kitchen timer. Much more room inside to hide electronics 
 than a newer rotary phone.
 
@@ -20,7 +20,7 @@ Inspiration for this project comes from [this Reddit post](https://www.reddit.co
 
 <u>Hopefully this project inspires others to re-purpose items and create fun arduino projects!</u>
 
-[Click Here for the Picture Library](https://github.com/Scott-28/Rotary_Phone_Timer/tree/main/images)
+[Click Here for the Picture Gallery](https://github.com/Scott-28/Rotary_Phone_Timer/tree/main/images)
 
 * Author: Scott-28
 * URL: https://github.com/Scott-28
@@ -51,6 +51,7 @@ Inspiration for this project comes from [this Reddit post](https://www.reddit.co
 ## Video Demo
 
 
+
 ### Build Notes  
 * The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
    * To combat this, a filtering capacitor was added to the handset switch which solves the noise causing the handset interrupt to falsely trigger.
@@ -70,7 +71,7 @@ Inspiration for this project comes from [this Reddit post](https://www.reddit.co
 | 3 | U3 | 1 | LM2596 DC-DC Step Down Converter (7.5VDC to 5VDC) |
 | 4 | U4 | 1 | Power Supply (120VAC to 7.5VDC) |
 | 5 | U5 | 1 | 5V Relay Module w/ Optocoupler |
-| 6 | U6 | 1 | LS057020 Sine Wave Generator (5VDC to 70VAC @ 20Hz) |
+| 6 | U6 | 1 | LS057020 Black Magic Sine Wave Generator (5VDC to 70VAC @ 20Hz) |
 | 7 | U7 | 1 | Rotary Dial |
 | 8 | U8 | 1 | Phone Ringer |
 | 9 | D1 & D2 | 2 | LED status lights for hr/min & min/sec |
