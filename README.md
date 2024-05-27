@@ -4,9 +4,15 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 <img src="https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/images/overview_pic.JPG" width="500" />
 
-I started the project by searching for a vintage rotary phone at thrift stores. I originally had in mind a classic 50-70s style or french style phone, but then came across this very old wooden box phone that was originally a hand crank phone. At some point, someone converted it to a rotary phone, and now it gets to serve another life as a kitchen timer. Much more room inside to hide electronics than a newer rotary phone.
+The project by searching for a vintage rotary phone at thrift stores. I originally had in mind a classic 50-70s style or french style phone, but then came across this very old wooden box phone 
+that was originally a hand crank phone. At some point, someone converted it to a rotary phone, and now it gets to serve another life as a kitchen timer. Much more room inside to hide electronics 
+than a newer rotary phone.
 
-Originally, I was expecting to have to figure out how the 425B network box worked that ran the rotary phone, but then realized I could use the Arduino as the sole controller. I used an oscilloscope to figure out the pulses off the rotary dial, each pulse was ~60ms high with a 100ms period. Each number is 1 pulse and a 0 is 10 pulses. The next main challenge was how to operate the original ringer (I really didn't want to resort to using a speaker). In North America, phone ringers run off 60-90VDC and 20Hz. I found a small company company called 'Cambridge Electronics Laboratories' that sells 'Black Magic' ring generators of various input and output voltages. I purchased a 5VDC input sine wave generator so I could use the same power supply as the Arduino. This ring generator creates a lot of electrical noise and I had to add a filter capacitor to the handset input otherwise it would frequently false trigger.
+Originally, I was expecting to have to figure out how the 425B network box worked that ran the rotary phone, but then realized I could use the Arduino as the sole controller. I used an 
+oscilloscope to figure out the pulses off the rotary dial, each pulse was ~60ms high with a 100ms period. Each number is 1 pulse and a 0 is 10 pulses. The next main challenge was how 
+to operate the original ringer (I really didn't want to resort to using a speaker). In North America, phone ringers run off 60-90VDC and 20Hz. I found a small company called 
+'Cambridge Electronics Laboratories' that sells 'Black Magic' ring generators of various input and output voltages. I purchased a 5VDC input sine wave generator so I could use the 
+same power supply as the Arduino. This ring generator creates a lot of electrical noise and I had to add a filter capacitor to the handset input otherwise it would frequently false trigger.
 
 One of the main goals of the project was to keep the vintage look. So I opted for a red 7-segment display and small red status lights. The labels are hand stamped brass. The switch on the back is a large metal switch with a heavy analog feel.
 
