@@ -44,7 +44,6 @@ Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary d
 
 ## Required Components
 
-Here's a general list of the main components required:
 | Item # | Schematic # | Qty | Description |
 | ----------- | ----------- | --- | ------------|
 | 1 | U1 | 1 | Arduino Uno |
@@ -61,6 +60,13 @@ Here's a general list of the main components required:
 | 12 | SW2 | 1 | Momentary start button |
 | 13 | SW3 | 1 | Phone Handset |
 | 14 | C1 | 1 | 0.1uF capacitor for filtering of the handset signal |
+
+Miscellaneous components not listed in table:
+* Old rotary phone (this should have the rotary dial, headset, and ringer needed)
+* 3D printed enclosure for the 4-digit display
+* Various screws to hold components in place
+* PCB prototype boards to make connecting/soldering components easier
+* Miscellaneous wiring/terminal blocks/connectors to connect components
 
 ## Schematic
 
