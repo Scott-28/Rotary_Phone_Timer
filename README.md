@@ -2,7 +2,7 @@
 
 Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary dial phone into a kitchen (or general purpose) timer.  
 
-<img src="https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/images/overview_pic.JPG" width="500" />
+<img src="https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/images/1-Cover%20Pic.jpg" width="500" />
 
 The project started by searching for a vintage rotary phone at thrift stores. I originally had in mind a classic 50-70s style or french style phone, but then came across this very old wooden box phone 
 that was originally a hand crank phone. At some point, someone converted it to a rotary phone, and now it gets to serve another life as a kitchen timer. Much more room inside to hide electronics 
@@ -15,8 +15,6 @@ to operate the original ringer (I really didn't want to resort to using a speake
 same power supply as the Arduino. This ring generator creates a lot of electrical noise and I had to add a filter capacitor to the handset input otherwise it would frequently false trigger.
 
 One of the main goals of the project was to keep the vintage look. So I opted for a red 7-segment display and small red status lights. The labels are hand stamped brass. The switch on the back is a large metal switch with a heavy analog feel.
-
-Inspiration for this project comes from [this Reddit post](https://www.reddit.com/r/arduino/comments/176b436/alarm_clock_made_of_an_old_rotary_phone/) where user, JoeNoob, used a rotary dial to create an alarm clock.
 
 <u>Hopefully this project inspires others to re-purpose items and create fun arduino projects!</u>
 
@@ -50,7 +48,7 @@ Inspiration for this project comes from [this Reddit post](https://www.reddit.co
         
 ## Video Demo
 
-
+https://youtu.be/joO1zkLfmjA
 
 ### Build Notes  
 * The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
