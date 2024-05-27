@@ -2,7 +2,7 @@
 
 Rotary_Phone_Timer is an Arduino Uno based project that turns a vintage rotary dial phone into a kitchen (or general purpose) timer.  
 
-<img src="https://github.com/Scott-28/Rotary_Phone_Timer/blob/main/images/1-Cover%20Pic.jpg" width="500" />
+<img src="images/1-Cover_Pic.jpg" width="500" />
 
 The project started by searching for a vintage rotary phone at thrift stores. I originally had in mind a classic 50-70s style or french style phone, but then came across this very old wooden box phone 
 that was originally a hand crank phone. At some point, someone converted it to a rotary phone, and now it gets to serve another life as a kitchen timer. Much more room inside to hide electronics 
@@ -48,7 +48,9 @@ One of the main goals of the project was to keep the vintage look. So I opted fo
         
 ## Video Demo
 
-https://youtu.be/joO1zkLfmjA
+<a href="https://youtu.be/joO1zkLfmjA">
+<img src="images/6-YouTube_Cover.jpg">
+</a>
 
 ### Build Notes  
 * The 70VAC 20Hz signal for the ringer causes a lot of noise! When it turns on, it can cause false signals in the arduino and cause the display to go blank or the handset switch interrupt to falsely trigger.
