@@ -10,7 +10,7 @@ than a newer rotary phone.
 
 Originally, I was expecting to have to figure out how the 425B network box worked that ran the rotary phone, but then realized I could use the Arduino as the sole controller. I used an 
 oscilloscope to figure out the pulses off the rotary dial, each pulse was ~60ms high with a 100ms period. Each number is 1 pulse and a 0 is 10 pulses. The next main challenge was how 
-to operate the original ringer (I really didn't want to resort to using a speaker). In North America, phone ringers run off 60-90VDC and 20Hz. I found a small company called 
+to operate the original ringer (I really didn't want to resort to using a speaker). In North America, phone ringers run off 60-90VAC and 20Hz. I found a small company called 
 'Cambridge Electronics Laboratories' that sells 'Black Magic' ring generators of various input and output voltages. I purchased a 5VDC input sine wave generator so I could use the 
 same power supply as the Arduino. This ring generator creates a lot of electrical noise and I had to add a filter capacitor to the handset input otherwise it would frequently false trigger.
 
