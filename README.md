@@ -16,6 +16,8 @@ same power supply as the Arduino. This ring generator creates a lot of electrica
 
 One of the main goals of the project was to keep the vintage look. So I opted for a red 7-segment display and small red status lights. The labels are hand stamped brass. The switch on the back is a large metal switch with a heavy analog feel.
 
+Inspiration for this project comes from [this Reddit post](https://www.reddit.com/r/arduino/comments/176b436/alarm_clock_made_of_an_old_rotary_phone/) where user, JoeNoob, used a rotary dial to create an alarm clock.
+
 <u>Hopefully this project inspires others to re-purpose items and create fun arduino projects!</u>
 
 [Click Here for the Picture Gallery](https://github.com/Scott-28/Rotary_Phone_Timer/tree/main/images)
@@ -44,7 +46,7 @@ One of the main goals of the project was to keep the vintage look. So I opted fo
     * If a mistake is made while entering time, picking up and then hanging up the headset will always reset the display.
     * For a quicker input, time that's in the "min/sec" format can be entered in "hr/min" format and then a double press can be used, as long as an even number minute is desired.
         * Example 1: If you want a timer of 5min, you can simply enter a single 5 and then double press which means the timer sees 00:05 and in hr/min format a double press means 5min. The timer will switch to 05:00 and start counting down the seconds.
-        * Example 2: If a time of 45 is desired, you can simply enter a 4 and a 5 (00:45) and double press and in hr/min format a double press means 45min. The timer will switch to 45:00 and tart counting down the seconds.
+        * Example 2: If a time of 45 is desired, you can simply enter a 4 and a 5 (00:45) and double press and in hr/min format a double press means 45min. The timer will switch to 45:00 and start counting down the seconds.
         
 ## Video Demo
 
