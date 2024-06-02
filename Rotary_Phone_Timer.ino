@@ -210,6 +210,16 @@ void StartTimer() {
   bool HourStart = false;
   int time_to_add = 0;
 
+  // convert time to seconds if hr/min mode is selected
+  if (btn_press_type >= 2) {
+    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) - 1;
+    Serial.print("converted time to hr/min: ");
+    Serial.println(remaining_time);
+    if (COUNTDOWN_TIME <= 3600) {
+      btn_press_type = 1; // change back to min/sec mode if the time entered is under 1hr
+    }
+  }
+
   // Turn on correct LED light for hr/min or min/sec
   if (btn_press_type >= 2) {
     digitalWrite(do_hr_min, HIGH); // turn hr/min light on
@@ -218,15 +228,6 @@ void StartTimer() {
   }
 
   Serial.println(COUNTDOWN_TIME);
-  // convert time to seconds if hr/min mode is selected
-  if (btn_press_type >= 2) {
-    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) - 1;
-    Serial.print("converted time to hr/min: ");
-    Serial.println(remaining_time);
-    if (COUNTDOWN_TIME <= 3600) {
-      btn_press_type = 1;
-    }
-  }
 
   remaining_time = COUNTDOWN_TIME;
 
