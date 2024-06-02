@@ -277,16 +277,8 @@ void StartTimer() {
     if (pulse_count == 10) {
       pulse_count = 0;
     } else if (pulse_count > 0) {
-      // Convert remaining time displayed to remaining seconds
-      long seconds;
-      seconds = ((remaining_time / 100) * 60) + (remaining_time % 100);
-      // Add new rotary dial input time to the COUNTDOWN_TIME (always add minutes)
-      if (btn_press_type == 1) {  // When in min/sec mode, x100 added to display (minutes)
-        time_to_add = (pulse_count * 100);  //Converts pulse count to minutes 
-      } else {   // When in hr/min mode, inputted pulse count is already in minutes, so just need to add 1min to time
-        time_to_add = pulse_count;
-      }
-      COUNTDOWN_TIME = COUNTDOWN_TIME + time_to_add;
+      // add time in minutes
+      COUNTDOWN_TIME = COUNTDOWN_TIME + (pulse_count * 60);
       pulse_count = 0; // Reset pulse count after adding it to timer so pulses count correctly next time rotary dial is used
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
