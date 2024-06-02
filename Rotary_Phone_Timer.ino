@@ -33,7 +33,7 @@ volatile byte pulse_state = LOW;         // variable for rotary dial pulse state
 volatile byte prev_pulse_state = LOW;    // variable for previous rotary dial pulse state
 volatile bool firsttime = true;          // variable to know if rotary dial input is in the first pulse or not
 
-unsigned int COUNTDOWN_TIME = 0;        // variable for time (in sec) that is inputted
+unsigned long COUNTDOWN_TIME = 0;        // variable for time (in sec) that is inputted
 
 volatile unsigned long pulsetime_last = millis();      //
 volatile unsigned long mainloop_time = millis();       //
@@ -105,7 +105,9 @@ void loop() {
       } 
 
       COUNTDOWN_TIME = UpdateDisplay(pulse_count, input_1, input_2, input_3, input_4);
+      Serial.print("COUNTDOWN_TIME: ");
       Serial.println(COUNTDOWN_TIME);
+      Serial.print("inum (number input): ");
       Serial.println(inum);
       pulse_count = 0; // Reset pulse count after displaying it so pulses count correctly next time rotary dial is used
       inum++; // index the inum count so input digit is in correct spot
@@ -133,27 +135,32 @@ void RotaryInput() {
   prev_pulse_state = pulse_state;
 }
 
-int UpdateDisplay(int number, byte digit_1, byte digit_2, byte digit_3, byte digit_4) {
+int UpdateDisplay(int rotary_num, byte digit_1, byte digit_2, byte digit_3, byte digit_4) {
   int total_time_sec = 0;
   int total_time_mod = 0;
   byte first_two = 0;
   byte last_two = 0;
   // Determine number to display as numbers are input from rotary dial
   if (inum == 1) {
-    total_time_sec = number;
-    last_two = number;
+    total_time_sec = rotary_num;
+    last_two = rotary_num;
   } else if (inum == 2) {
-    total_time_sec = ((digit_1 * 10) + number);
+    total_time_sec = ((digit_1 * 10) + rotary_num);
     last_two = total_time_sec;
   } else if (inum == 3) {
-    total_time_sec = ((digit_1 * 60) + (digit_2 * 10) + number);
+    total_time_sec = ((digit_1 * 60) + (digit_2 * 10) + rotary_num);
     first_two = digit_1;
     last_two = (digit_2 * 10) + digit_3;
   } else if (inum == 4) {
-    total_time_sec = (((digit_1 * 10) + digit_2) * 60) + ((digit_3 * 10) + number);
+    total_time_sec = (((digit_1 * 10) + digit_2) * 60) + ((digit_3 * 10) + rotary_num);
     first_two = (digit_1 * 10) + digit_2;
     last_two = (digit_3 * 10) + digit_4;
   }
+
+  Serial.print("first_two: ");
+  Serial.println(first_two);
+  Serial.print("last_two: ");
+  Serial.println(last_two);
 
   if ((last_two >= 60) && (last_two <= 99)) {
     total_time_mod = (first_two * 100) + last_two;
@@ -197,8 +204,9 @@ void SingleorDouble() {
 
 void StartTimer() {
   unsigned long start_time = millis();
-  int remaining_time = COUNTDOWN_TIME;
-  int elapsed_time;
+  unsigned long remaining_time;
+  unsigned long display_time = 0;
+  unsigned long elapsed_time;
   bool HourStart = false;
   int time_to_add = 0;
 
@@ -209,16 +217,22 @@ void StartTimer() {
     digitalWrite(do_min_sec, HIGH); // turn min/sec light on
   }
 
-  // figure out time entered in seconds
+  Serial.println(COUNTDOWN_TIME);
+  // convert time to seconds if hr/min mode is selected
   if (btn_press_type >= 2) {
-    //remaining_time = 
+    COUNTDOWN_TIME = COUNTDOWN_TIME * 60;
+    Serial.print("converted time to hr/min: ");
+    Serial.println(remaining_time);
   }
+
+  remaining_time = COUNTDOWN_TIME;
 
   ////////////////////////////////////
 
 
   while (btn_press_type != 0) {
     unsigned long current_time = millis();
+    /*
     if ((btn_press_type >= 2) && (remaining_time > 100)) {
       elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
       HourStart = true;
@@ -240,18 +254,32 @@ void StartTimer() {
       digitalWrite(do_hr_min, LOW); // turn hr/min light off
       digitalWrite(do_min_sec, HIGH); // turn min/sec light on
       elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
-    } else {
+    } else { */
       elapsed_time = (current_time - start_time) / (1000); // calculate elapsed time in seconds
+    //}
+    //*/
+
+    remaining_time = COUNTDOWN_TIME - elapsed_time; // in seconds
+
+    if((btn_press_type >= 2)){
+      display_time = ((remaining_time / 3600) * 100) + ((remaining_time % 3600) / 60);
+      //Serial.println(display_time);
+    } else { // display time when in min/sec mode
+      display_time = ((remaining_time / 60) * 100) + (remaining_time % 60);
     }
 
-    remaining_time = COUNTDOWN_TIME - elapsed_time;
-    display.showNumberDecEx(remaining_time, 0b01000000, false);
+    //Serial.println(elapsed_time);
+    
+    //Serial.println(remaining_time % 60);
+    display.showNumberDecEx(display_time, 0b01000000, false);
+    /*
     int rem = 1;
     rem = remaining_time % 100;
     if ((rem == 99) && (remaining_time != 0)) {
       remaining_time = remaining_time - 40;
       COUNTDOWN_TIME = COUNTDOWN_TIME - 40;
     }
+    */
 
     // Go to Ringer function when time reaches zero
     if (remaining_time == 0) {
