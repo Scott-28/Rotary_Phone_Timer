@@ -210,15 +210,12 @@ void StartTimer() {
   bool HourStart = false;
   int time_to_add = 0;
   
-  // convert time to seconds if hr/min mode is selected
+  // multiply by 60 for correct time (in sec) if hr/min mode is selected
   if (btn_press_type >= 2) {
-    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) + 59;
+    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) + 59; // add 59 for integer rounding down so display shows time input for first minute
     Serial.println("---------------");
     Serial.print("converted time to hr/min: ");
     Serial.println(COUNTDOWN_TIME);
-    if (COUNTDOWN_TIME <= 3600) {
-      btn_press_type = 1; // change back to min/sec mode if the time entered is under 1hr
-    }
   }
 
   // Turn on correct LED light for hr/min or min/sec
@@ -239,7 +236,7 @@ void StartTimer() {
   // loop through timer sequence
   while (btn_press_type != 0) {
     unsigned long current_time = millis();
-    delay(500); // temp to see values more
+    //delay(500); // temp to see values more
     /*
     if ((btn_press_type >= 2) && (remaining_time > 100)) {
       elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
@@ -273,7 +270,7 @@ void StartTimer() {
 
     remaining_time = COUNTDOWN_TIME - elapsed_time; // in seconds
 
-    // switch to min/sec when time reaches 1 hour
+    // switch to min/sec mode when time reaches 1 hour
     if ((remaining_time <= 3659) && (btn_press_type >= 2)) {
       btn_press_type = 1; // ensures this is only called once
       digitalWrite(do_hr_min, LOW); // turn hr/min light off
@@ -286,16 +283,16 @@ void StartTimer() {
       Serial.println(COUNTDOWN_TIME);
       Serial.print("remaining_time: ");
       Serial.println(remaining_time);
-    if((btn_press_type >= 2)){
+
+    // convert remaining time in seconds to the correct format for the display
+    if((btn_press_type >= 2)){ // convert seconds to hr/min
       display_time = (((remaining_time / 3600) * 100) + (((remaining_time / 1) % 3600) + 0) / 60);
-    } else { // display time when in min/sec mode
+    } else { // convert seconds to min/sec
       display_time = ((remaining_time / 60) * 100) + ((remaining_time / 1) % 60);
     }
       Serial.print("display_time: ");
       Serial.println(display_time);
-    //Serial.println(elapsed_time);
-    
-    //Serial.println(remaining_time % 60);
+
     display.showNumberDecEx(display_time, 0b01000000, false);
     /*
     int rem = 1;
