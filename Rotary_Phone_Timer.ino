@@ -3,7 +3,7 @@
 
 /*
  * Rotary Phone Timer
- * V1.0.0
+ * V1.1.0
  */
 
 //declaring pins
@@ -207,7 +207,6 @@ void StartTimer() {
   unsigned long remaining_time; // always in seconds
   unsigned long display_time = 0;
   unsigned long elapsed_time;
-  bool HourStart = false;
   int time_to_add = 0;
   
   // multiply by 60 for correct time (in sec) if hr/min mode is selected
