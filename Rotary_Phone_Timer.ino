@@ -209,12 +209,13 @@ void StartTimer() {
   unsigned long elapsed_time;
   bool HourStart = false;
   int time_to_add = 0;
-
+  
   // convert time to seconds if hr/min mode is selected
   if (btn_press_type >= 2) {
-    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) - 1;
+    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) + 59;
+    Serial.println("---------------");
     Serial.print("converted time to hr/min: ");
-    Serial.println(remaining_time);
+    Serial.println(COUNTDOWN_TIME);
     if (COUNTDOWN_TIME <= 3600) {
       btn_press_type = 1; // change back to min/sec mode if the time entered is under 1hr
     }
@@ -227,13 +228,18 @@ void StartTimer() {
     digitalWrite(do_min_sec, HIGH); // turn min/sec light on
   }
 
-  Serial.println(COUNTDOWN_TIME);
+  COUNTDOWN_TIME = (COUNTDOWN_TIME * 1) + 0; // multiple by 10 so integer math can be used with rounding, add 5 for rounding down
 
   remaining_time = COUNTDOWN_TIME;
+  Serial.print("Starting COUNTDOWN_TIME: ");
+  Serial.println(COUNTDOWN_TIME);
+  Serial.print("Starting remaining_time: ");
+  Serial.println(remaining_time);
 
   // loop through timer sequence
   while (btn_press_type != 0) {
     unsigned long current_time = millis();
+    delay(500); // temp to see values more
     /*
     if ((btn_press_type >= 2) && (remaining_time > 100)) {
       elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
@@ -257,18 +263,36 @@ void StartTimer() {
       digitalWrite(do_min_sec, HIGH); // turn min/sec light on
       elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
     } else { */
-      elapsed_time = (current_time - start_time) / (1000); // calculate elapsed time in seconds
+      elapsed_time = (current_time - start_time) / (1000); // calculate elapsed time (in sec) since start button was pushed
+      elapsed_time = elapsed_time * 1; // convert to sec*10 for integer math
+      Serial.println("-");
+      Serial.print("elapsed time: ");
+      Serial.println(elapsed_time);
     //}
     //*/
 
     remaining_time = COUNTDOWN_TIME - elapsed_time; // in seconds
 
-    if((btn_press_type >= 2)){
-      display_time = ((remaining_time / 3600) * 100) + ((remaining_time % 3600) / 60) + 1;
-    } else { // display time when in min/sec mode
-      display_time = ((remaining_time / 60) * 100) + (remaining_time % 60);
+    // switch to min/sec when time reaches 1 hour
+    if ((remaining_time <= 3659) && (btn_press_type >= 2)) {
+      btn_press_type = 1; // ensures this is only called once
+      digitalWrite(do_hr_min, LOW); // turn hr/min light off
+      digitalWrite(do_min_sec, HIGH); // turn min/sec light on
+      remaining_time = remaining_time - 60;
+      COUNTDOWN_TIME = COUNTDOWN_TIME - 60;
     }
 
+      Serial.print("COUNTDOWN_TIME: ");
+      Serial.println(COUNTDOWN_TIME);
+      Serial.print("remaining_time: ");
+      Serial.println(remaining_time);
+    if((btn_press_type >= 2)){
+      display_time = (((remaining_time / 3600) * 100) + (((remaining_time / 1) % 3600) + 0) / 60);
+    } else { // display time when in min/sec mode
+      display_time = ((remaining_time / 60) * 100) + ((remaining_time / 1) % 60);
+    }
+      Serial.print("display_time: ");
+      Serial.println(display_time);
     //Serial.println(elapsed_time);
     
     //Serial.println(remaining_time % 60);
