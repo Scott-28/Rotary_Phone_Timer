@@ -205,7 +205,7 @@ void SingleorDouble() {
 void StartTimer() {
   unsigned long start_time = millis();
   unsigned long remaining_time; // always in seconds
-  unsigned long display_time = 0;
+  float display_time = 0;
   unsigned long elapsed_time;
   bool HourStart = false;
   int time_to_add = 0;
@@ -220,9 +220,12 @@ void StartTimer() {
   Serial.println(COUNTDOWN_TIME);
   // convert time to seconds if hr/min mode is selected
   if (btn_press_type >= 2) {
-    COUNTDOWN_TIME = COUNTDOWN_TIME * 60;
+    COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) - 1;
     Serial.print("converted time to hr/min: ");
     Serial.println(remaining_time);
+    if (COUNTDOWN_TIME <= 3600) {
+      btn_press_type = 1;
+    }
   }
 
   remaining_time = COUNTDOWN_TIME;
@@ -262,8 +265,7 @@ void StartTimer() {
     remaining_time = COUNTDOWN_TIME - elapsed_time; // in seconds
 
     if((btn_press_type >= 2)){
-      display_time = ((remaining_time / 3600) * 100) + ((remaining_time % 3600) / 60);
-      //Serial.println(display_time);
+      display_time = ((remaining_time / 3600) * 100) + ((remaining_time % 3600) / 60) + 1;
     } else { // display time when in min/sec mode
       display_time = ((remaining_time / 60) * 100) + (remaining_time % 60);
     }
