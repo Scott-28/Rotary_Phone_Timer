@@ -205,7 +205,7 @@ void SingleorDouble() {
 void StartTimer() {
   unsigned long start_time = millis();
   unsigned long remaining_time; // always in seconds
-  float display_time = 0;
+  unsigned long display_time = 0;
   unsigned long elapsed_time;
   bool HourStart = false;
   int time_to_add = 0;
@@ -231,9 +231,7 @@ void StartTimer() {
 
   remaining_time = COUNTDOWN_TIME;
 
-  ////////////////////////////////////
-
-
+  // loop through timer sequence
   while (btn_press_type != 0) {
     unsigned long current_time = millis();
     /*
