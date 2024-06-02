@@ -204,7 +204,7 @@ void SingleorDouble() {
 
 void StartTimer() {
   unsigned long start_time = millis();
-  unsigned long remaining_time;
+  unsigned long remaining_time; // always in seconds
   unsigned long display_time = 0;
   unsigned long elapsed_time;
   bool HourStart = false;
