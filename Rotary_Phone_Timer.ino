@@ -55,7 +55,7 @@ void setup() {
   pinMode(13, OUTPUT);                                 // used as a visual to see if reset was triggered
 
   // Set baud rate for serial monitor, can de-activate later
-  // Serial.begin(9600);
+  Serial.begin(9600);
 
   // Clear the display on program start-up
   display.setBrightness(brightness, false);
@@ -213,9 +213,11 @@ void StartTimer() {
   if (btn_press_type >= 2) {
     COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) + 59; // add 59 for integer rounding down so display shows time input for first minute
     // if less than 1hr, convert back to min/sec mode
-    if (remaining_time <= 3659) {
+    if (COUNTDOWN_TIME <= 3659) {
       btn_press_type = 1;
       COUNTDOWN_TIME = COUNTDOWN_TIME - 60;
+      Serial.println(remaining_time);
+      Serial.println("DID I COME HERE??");
     }
   }
 
@@ -246,9 +248,9 @@ void StartTimer() {
 
     // convert remaining time in seconds to the correct format for the display
     if((btn_press_type >= 2)){ // convert seconds to hr/min
-      display_time = (((remaining_time / 3600) * 100) + (((remaining_time / 1) % 3600) + 0) / 60);
+      display_time = ((remaining_time / 3600) * 100) + ((remaining_time % 3600) / 60);
     } else { // convert seconds to min/sec
-      display_time = ((remaining_time / 60) * 100) + ((remaining_time / 1) % 60);
+      display_time = ((remaining_time / 60) * 100) + ((remaining_time) % 60);
     }
 
     display.showNumberDecEx(display_time, 0b01000000, false);
