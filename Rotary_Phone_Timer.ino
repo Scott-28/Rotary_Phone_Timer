@@ -118,7 +118,7 @@ void loop() {
   start_btn_state = digitalRead(di_StartButton);
   // If button is pressed, begin sequence of events to start the timer
   if ((start_btn_state == LOW) && (COUNTDOWN_TIME != 0)) {
-    SingleorDouble(); // Function to detect single or double button press
+    SingleorDouble(); // Function to detect single or double button press for mode
     StartTimer(); // Function to start timer count down
   }
 }
@@ -213,9 +213,11 @@ void StartTimer() {
   // multiply by 60 for correct time (in sec) if hr/min mode is selected
   if (btn_press_type >= 2) {
     COUNTDOWN_TIME = (COUNTDOWN_TIME * 60) + 59; // add 59 for integer rounding down so display shows time input for first minute
-    Serial.println("---------------");
-    Serial.print("converted time to hr/min: ");
-    Serial.println(COUNTDOWN_TIME);
+    // if less than 1hr, convert back to min/sec mode
+    if (remaining_time <= 3659) {
+      btn_press_type = 1;
+      COUNTDOWN_TIME = COUNTDOWN_TIME - 60;
+    }
   }
 
   // Turn on correct LED light for hr/min or min/sec
@@ -225,49 +227,13 @@ void StartTimer() {
     digitalWrite(do_min_sec, HIGH); // turn min/sec light on
   }
 
-  COUNTDOWN_TIME = (COUNTDOWN_TIME * 1) + 0; // multiple by 10 so integer math can be used with rounding, add 5 for rounding down
-
   remaining_time = COUNTDOWN_TIME;
-  Serial.print("Starting COUNTDOWN_TIME: ");
-  Serial.println(COUNTDOWN_TIME);
-  Serial.print("Starting remaining_time: ");
-  Serial.println(remaining_time);
 
   // loop through timer sequence
   while (btn_press_type != 0) {
     unsigned long current_time = millis();
-    //delay(500); // temp to see values more
-    /*
-    if ((btn_press_type >= 2) && (remaining_time > 100)) {
-      elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
-      HourStart = true;
-    } else if ((btn_press_type >= 2) && (remaining_time <= 100)) { // Used to switch from hr/min to min/sec once the timer reaches 1:00hr
-      if (remaining_time != 100) {
-        COUNTDOWN_TIME = (COUNTDOWN_TIME * 100);
-      } else {
-        HourStart = true;
-      }
-      if (HourStart == true) {
-        // Restart the timer in min/sec after the hours reach 1:00hr
-        COUNTDOWN_TIME = 5959;
-        remaining_time = 5959;
-        start_time = millis();
-        current_time = millis();
-      }
-      // Switch to min/sec mode
-      btn_press_type = 1;
-      digitalWrite(do_hr_min, LOW); // turn hr/min light off
-      digitalWrite(do_min_sec, HIGH); // turn min/sec light on
-      elapsed_time = (current_time - start_time) / (60000); // calculate elapsed time in minutes
-    } else { */
-      elapsed_time = (current_time - start_time) / (1000); // calculate elapsed time (in sec) since start button was pushed
-      elapsed_time = elapsed_time * 1; // convert to sec*10 for integer math
-      Serial.println("-");
-      Serial.print("elapsed time: ");
-      Serial.println(elapsed_time);
-    //}
-    //*/
 
+    elapsed_time = (current_time - start_time) / (1000); // calculate elapsed time (in sec) since start button was pushed
     remaining_time = COUNTDOWN_TIME - elapsed_time; // in seconds
 
     // switch to min/sec mode when time reaches 1 hour
@@ -275,14 +241,9 @@ void StartTimer() {
       btn_press_type = 1; // ensures this is only called once
       digitalWrite(do_hr_min, LOW); // turn hr/min light off
       digitalWrite(do_min_sec, HIGH); // turn min/sec light on
-      remaining_time = remaining_time - 60;
+      remaining_time = remaining_time - 60; // removes the added time while in hr/min mode for display
       COUNTDOWN_TIME = COUNTDOWN_TIME - 60;
     }
-
-      Serial.print("COUNTDOWN_TIME: ");
-      Serial.println(COUNTDOWN_TIME);
-      Serial.print("remaining_time: ");
-      Serial.println(remaining_time);
 
     // convert remaining time in seconds to the correct format for the display
     if((btn_press_type >= 2)){ // convert seconds to hr/min
@@ -290,18 +251,8 @@ void StartTimer() {
     } else { // convert seconds to min/sec
       display_time = ((remaining_time / 60) * 100) + ((remaining_time / 1) % 60);
     }
-      Serial.print("display_time: ");
-      Serial.println(display_time);
 
     display.showNumberDecEx(display_time, 0b01000000, false);
-    /*
-    int rem = 1;
-    rem = remaining_time % 100;
-    if ((rem == 99) && (remaining_time != 0)) {
-      remaining_time = remaining_time - 40;
-      COUNTDOWN_TIME = COUNTDOWN_TIME - 40;
-    }
-    */
 
     // Go to Ringer function when time reaches zero
     if (remaining_time == 0) {
