@@ -56,7 +56,7 @@ void setup() {
   pinMode(13, OUTPUT);                                 // used as a visual to see if reset was triggered
 
   // Set baud rate for serial monitor, can de-activate later
-  //Serial.begin(9600);
+  Serial.begin(9600);
 
   // Clear the display on program start-up
   display.setBrightness(brightness, false);
@@ -250,9 +250,11 @@ void StartTimer() {
     } else if ((btn_press_type >= 2) && (rem_last_two >= 0)) {
       display_time = ((remaining_time / 3600) * 100) + rem_last_two;
     } else if ((btn_press_type == 1) && (rem_last_two >= 60)) {
-      display_time = (((remaining_time / 60) * 100) - 100) + rem_last_two;
+      //display_time = (((remaining_time / 60) * 100) - 100) + rem_last_two;
+      display_time = (((remaining_time / 60) * 100) - 100) + ((remaining_time) - (((remaining_time / 60) * 100) - 100) + 40);
     } else if ((btn_press_type == 1) && (rem_last_two >= 0)) {
-      display_time = ((remaining_time / 60) * 100) + rem_last_two;
+      //display_time = ((remaining_time / 60) * 100) + rem_last_two;
+      display_time = ((remaining_time / 60) * 100) + ((remaining_time) - (((remaining_time / 60) * 100)) + 40);
     } else { // convert seconds to min/sec
       display_time = ((remaining_time / 60) * 100) + ((remaining_time) % 60);
     }
@@ -283,9 +285,14 @@ void StartTimer() {
     } else if (pulse_count > 0) {
       // add time in minutes
       COUNTDOWN_TIME = COUNTDOWN_TIME + (pulse_count * 60);
+      //remaining_time = remaining_time + (pulse_count * 60);
       pulse_count = 0; // Reset pulse count after adding it to timer so pulses count correctly next time rotary dial is used
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
+    Serial.print("remaining_time: ");
+    Serial.print(remaining_time);
+    Serial.print("    rem_last_two: ");
+    Serial.println(rem_last_two);
   }
   display.setBrightness(brightness, false);
   display.clear();
