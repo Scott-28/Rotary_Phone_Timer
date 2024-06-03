@@ -196,6 +196,7 @@ void SingleorDouble() {
 void StartTimer() {
   unsigned long start_time = millis();
   int remaining_time = COUNTDOWN_TIME;
+  int real_time = remaining_time; // real time (in sec) instead of what needs to be displayed
   int elapsed_time;
   bool HourStart = false;
   int time_to_add = 0;
