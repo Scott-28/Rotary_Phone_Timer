@@ -56,7 +56,7 @@ void setup() {
   pinMode(13, OUTPUT);                                 // used as a visual to see if reset was triggered
 
   // Set baud rate for serial monitor, can de-activate later
-  Serial.begin(9600);
+  //Serial.begin(9600);
 
   // Clear the display on program start-up
   display.setBrightness(brightness, false);
