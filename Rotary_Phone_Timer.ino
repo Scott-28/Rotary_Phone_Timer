@@ -23,6 +23,8 @@ volatile byte input_1 = 0;
 volatile byte input_2 = 0;
 volatile byte input_3 = 0;
 volatile byte input_4 = 0;
+volatile int first_two = 0; 
+volatile int last_two = 0;
 
 volatile byte start_btn_state = HIGH;    // variable for start button state
 volatile byte btn_press_type = 0;        // variable for single or double start button press
@@ -138,8 +140,6 @@ void RotaryInput() {
 int UpdateDisplay(int rotary_num, byte digit_1, byte digit_2, byte digit_3, byte digit_4) {
   int total_time_sec = 0;
   int total_time_mod = 0;
-  byte first_two = 0;
-  byte last_two = 0;
   // Determine number to display as numbers are input from rotary dial
   if (inum == 1) {
     total_time_sec = rotary_num;
@@ -236,6 +236,9 @@ void StartTimer() {
 
     elapsed_time = (current_time - start_time) / (1000); // calculate elapsed time (in sec) since start button was pushed
     remaining_time = COUNTDOWN_TIME - elapsed_time; // in seconds
+    int rem_last_two = last_two;
+    rem_last_two = last_two - elapsed_time;
+    //Serial.println(rem_last_two);
 
     // switch to min/sec mode when time reaches 1 hour
     if ((remaining_time <= 3659) && (btn_press_type >= 2)) {
@@ -247,12 +250,28 @@ void StartTimer() {
     }
 
     // convert remaining time in seconds to the correct format for the display
-    if((btn_press_type >= 2)){ // convert seconds to hr/min
+    if((btn_press_type >= 2) && (last_two < 60)){ // convert seconds to hr/min
       display_time = ((remaining_time / 3600) * 100) + ((remaining_time % 3600) / 60);
+      rem_last_two = -1;
+      Serial.println("normal-hr");
+    } else if ((btn_press_type >= 2) && (rem_last_two >= 60)) {
+      display_time = (((remaining_time / 3600) * 100) - 100) + rem_last_two;
+      Serial.println(">60-hr");
+    } else if ((btn_press_type >= 2) && (rem_last_two >= 0)) {
+      display_time = ((remaining_time / 3600) * 100) + rem_last_two;
+      Serial.println("<60-hr");
+    } else if ((btn_press_type == 1) && (rem_last_two >= 60)) {
+      display_time = (((remaining_time / 60) * 100) - 100) + rem_last_two;
+      Serial.println(">60-sec");
+    } else if ((btn_press_type == 1) && (rem_last_two >= 0)) {
+      display_time = ((remaining_time / 60) * 100) + rem_last_two;
+      Serial.println("<60-sec");
     } else { // convert seconds to min/sec
       display_time = ((remaining_time / 60) * 100) + ((remaining_time) % 60);
+      rem_last_two = -1;
+      Serial.println("normal-sec");
     }
-
+      Serial.println(rem_last_two);
     display.showNumberDecEx(display_time, 0b01000000, false);
 
     // Go to Ringer function when time reaches zero
@@ -382,6 +401,8 @@ void reset() {
   input_2 = 0;
   input_3 = 0;
   input_4 = 0;
+  first_two = 0; 
+  last_two = 0;
   COUNTDOWN_TIME = 0;
   firsttime = true;
   prev_pulse_state = LOW;
